@@ -24,9 +24,9 @@ const NavBar = ({dark,setDark}) => {
 
         <NavLink
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          to="/About"
+          to="/categories"
         >
-          About
+          Categories
         </NavLink>
 
         <NavLink
@@ -42,7 +42,7 @@ const NavBar = ({dark,setDark}) => {
     </React.Fragment>
   );
   return (
-    <div>
+    <div className="border-0 border-b-2 border-secondary">
       <div className="navbar bg-base-100 justify-between">
         <div className="navbar-start">
           <div className="dropdown">
