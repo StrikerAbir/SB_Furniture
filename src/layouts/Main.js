@@ -6,7 +6,7 @@ import NavBar from '../shared/NavBar';
 
 const Main = () => {
     return (
-      <div data-theme="light">
+      <div data-theme="l">
         <NavBar></NavBar>
         <Outlet></Outlet>
         <Footer></Footer>
