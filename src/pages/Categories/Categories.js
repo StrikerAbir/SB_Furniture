@@ -13,7 +13,7 @@ const Categories = () => {
   }, []);
 //   console.log(categories);
   return (
-    <div className="mt-16 mb-10">
+    <div className="mt-16 mb-10 ">
       <div className="text-center">
         <p className="text-2xl font-bold text-primary">Categories</p>
         <h2 className="text-5xl font-semibold"> Dive Into Goods</h2>

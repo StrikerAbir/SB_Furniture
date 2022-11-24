@@ -7,7 +7,7 @@ const CategoryCard = ({ category }) => {
   const { image, category_name,category_id } = category;
   console.log(image);
   return (
-    <div className="card card-compact  bg-base-100 rounded-none ">
+    <div className="card card-compact  bg-base-100 rounded-none">
       <PhotoProvider>
         <PhotoView src={image}>
           <img

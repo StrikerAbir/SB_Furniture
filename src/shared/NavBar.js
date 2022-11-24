@@ -68,34 +68,12 @@ const NavBar = ({dark,setDark}) => {
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             <div className='flex items-center'>
               <img className="w-10 pr-2" src={logo} alt="" />
-              <h2>SB Furniture</h2>
+              <h2 className='font-bold'>SB Furniture</h2>
             </div>
           </Link>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
-        </div>
-        <div>
-          <label
-            htmlFor="dashboardDrawer"
-            tabIndex={2}
-            className="btn btn-ghost lg:hidden"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
         </div>
       </div>
     </div>
