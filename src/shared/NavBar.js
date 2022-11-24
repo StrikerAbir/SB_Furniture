@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import logo from '../assets/images/logo.png'
 const NavBar = ({dark,setDark}) => {
   let activeStyle = {
     color: "black",
@@ -70,7 +70,10 @@ const NavBar = ({dark,setDark}) => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            SB Furniture
+            <div className='flex items-center'>
+              <img className="w-10 pr-2" src={logo} alt="" />
+              <h2>SB Furniture</h2>
+            </div>
           </Link>
         </div>
         <div className="navbar-end hidden lg:flex">

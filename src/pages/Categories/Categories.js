@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Axios } from "axios";
 import axios from "axios";
-import ProductCard from "../../shared/ProductCard";
 import CategoryCard from "./CategoryCard/CategoryCard";
+import useTitle from "../../hooks/useTitle";
 
 const Categories = () => {
+  useTitle("Categories");
   const [categories, setCategories] = useState();
   useEffect(() => {
     axios.get("http://localhost:1000/categories").then((data) => {
