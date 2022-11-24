@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CategoryCard from "./CategoryCard/CategoryCard";
 import useTitle from "../../hooks/useTitle";
+import Loading from "../../shared/Loading";
 
 const Categories = () => {
   useTitle("Categories");
@@ -12,6 +13,7 @@ const Categories = () => {
     });
   }, []);
 //   console.log(categories);
+
   return (
     <div className="mt-16 mb-10 ">
       <div className="text-center">
@@ -31,7 +33,7 @@ const Categories = () => {
           ))}
         </div>
       ) : (
-        <progress className="progress w-full"></progress>
+        <Loading></Loading>
       )}
     </div>
   );
