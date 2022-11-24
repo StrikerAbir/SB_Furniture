@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({dark,setDark}) => {
   let activeStyle = {
     color: "black",
   };
@@ -37,7 +37,7 @@ const NavBar = () => {
         </NavLink>
       </li>
       <div className="flex justify-center items-center">
-        <input type="checkbox" className="toggle" />
+        <input onClick={()=>setDark(!dark)} type="checkbox" className="toggle" />
       </div>
     </React.Fragment>
   );
