@@ -1,0 +1,19 @@
+[
+    {
+        "category_id":1,
+        "image":"",
+        "title":"",
+        "location":"",
+        "resale_price":"",
+        "original_price":"",
+        "years_of_use":"",
+        "years_of_buy":"",
+        "product_condition":"",
+        "post_time":"",
+        "seller_name":"",
+        "seller_verified":"",
+        "seller_phone":"",
+        "seller_email":"",
+        "description":""
+    }
+]
