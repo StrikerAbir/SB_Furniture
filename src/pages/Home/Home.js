@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ThemeLayout = () => {
+const Home = () => {
     return (
         <div>
-            
+            home
         </div>
     );
 };
 
-export default ThemeLayout;
+export default Home;
