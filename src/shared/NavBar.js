@@ -2,35 +2,31 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/images/logo.png'
 const NavBar = ({dark,setDark}) => {
-  let activeStyle = {
-    color: "black",
-  };
+
   const menuItems = (
     <React.Fragment>
       <li className="font-semibold">
         <NavLink
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        
           to="/"
         >
           Home
         </NavLink>
 
         <NavLink
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
           to="/blogs"
         >
           Blogs
         </NavLink>
 
         <NavLink
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
           to="/categories"
         >
           Categories
         </NavLink>
 
         <NavLink
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+
           to="/Reviews"
         >
           Reviews
@@ -42,7 +38,7 @@ const NavBar = ({dark,setDark}) => {
     </React.Fragment>
   );
   return (
-    <div className="border-0 border-b border-warning">
+    <div className="border-0 border-b border-warning py-3">
       <div className="navbar bg-base-100 justify-between">
         <div className="navbar-start">
           <div className="dropdown">
