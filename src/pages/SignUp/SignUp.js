@@ -12,12 +12,12 @@ const SignUp = () => {
 
   const [createdUserEmail, setCreatedUserEmail] = useState(null);
   // custom hook
-const [token] = useToken(createdUserEmail);
-const navigate = useNavigate();
+  const [token] = useToken(createdUserEmail);
+  const navigate = useNavigate();
 
-if (token) {
-  navigate("/");
-}
+  if (token) {
+    navigate("/");
+  }
   const {
     register,
     formState: { errors },
@@ -48,20 +48,20 @@ if (token) {
       });
   };
 
- const saveUser = (name, email,user_type) => {
-   const user = { name, email,user_type };
-   fetch("http://localhost:1000/users", {
-     method: "POST",
-     headers: {
-       "content-type": "application/json",
-     },
-     body: JSON.stringify(user),
-   })
-     .then((res) => res.json())
-     .then((data) => {
-         setCreatedUserEmail(email);
-     });
- };
+  const saveUser = (name, email, user_type) => {
+    const user = { name, email, user_type };
+    fetch("http://localhost:1000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCreatedUserEmail(email);
+      });
+  };
 
   return (
     <div className="h-screen flex justify-center items-center">
@@ -78,7 +78,7 @@ if (token) {
               {...register("name", { required: "Name is required." })}
             />
             {errors.name && (
-              <p className="text-red-500 text-sm">
+              <p className="text-error text-sm">
                 <small>{errors.name?.message}</small>
               </p>
             )}
@@ -124,14 +124,23 @@ if (token) {
               </p>
             )}
           </div>
-          <div className="form-control">
+
+          <div className="form-control mb-6">
             <label className="label">
-              <span className="label-text font-semibold">User Type</span>
+              <span className="label-text font-semibold">User type</span>
             </label>
-            <select name="slot" className="select select-bordered">
+            <select
+              {...register("user_type", { required: "user_type is required." })}
+              className="select select-bordered"
+            >
               <option value="Buyer">Buyer</option>
               <option value="Seller">Seller</option>
             </select>
+            {errors.user_type && (
+              <p className="text-red-500 text-sm">
+                <small>{errors.user_type?.message}</small>
+              </p>
+            )}
           </div>
 
           <div>
