@@ -71,7 +71,7 @@ const ProductDetails = () => {
                         <label
                           disabled={!user ? true : false}
                           htmlFor="booking-modal"
-                          className="text-white btn btn-primary bg-gradient-to-r from-primary to-secondary"
+                          className=" btn btn-primary"
                         >
                           {user ? "BOOK NOW" : "PLEASE LOGIN FIRST"}
                         </label>

@@ -24,8 +24,24 @@ const BookingModal = ({data}) => {
       buy_date: date
     };
 
-    
-
+    fetch("http://localhost:1000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Booking Successful..");
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((err) => {
+        toast.error("Failed to booking..");
+      });
   }
   return (
     <>
