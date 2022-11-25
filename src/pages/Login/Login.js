@@ -65,7 +65,7 @@ const Login = () => {
               {...register("email", { required: "Email is required." })}
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">
+              <p className="text-error text-sm">
                 <small>{errors.email?.message}</small>
               </p>
             )}
@@ -86,7 +86,7 @@ const Login = () => {
               })}
             />
             {errors.password && (
-              <p className="text-red-500 text-sm">
+              <p className="text-error text-sm">
                 <small>{errors.password?.message}</small>
               </p>
             )}
@@ -101,7 +101,7 @@ const Login = () => {
           </label>
           <div>
             {loginError && (
-              <p className="text-red-500 text-sm">
+              <p className="text-error text-sm">
                 <small>{loginError}</small>
               </p>
             )}

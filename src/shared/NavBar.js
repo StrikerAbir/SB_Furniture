@@ -1,39 +1,58 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/images/logo.png'
+import { AuthContext } from "../authProvider/AuthProvider";
+import { FaUser } from "react-icons/fa";
 const NavBar = ({dark,setDark}) => {
-
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut();
+  };
   const menuItems = (
     <React.Fragment>
       <li className="font-semibold">
-        <NavLink
-        
-          to="/"
-        >
-          Home
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
 
-        <NavLink
-          to="/blogs"
-        >
-          Blogs
-        </NavLink>
+        <NavLink to="/blogs">Blogs</NavLink>
 
-        <NavLink
-          to="/categories"
-        >
-          Categories
-        </NavLink>
+        <NavLink to="/categories">Categories</NavLink>
 
-        <NavLink
-
-          to="/Reviews"
-        >
-          Reviews
-        </NavLink>
+        <NavLink to="/Reviews">Reviews</NavLink>
+        {user?.uid ? (
+          <>
+            <NavLink
+              onClick={handleLogOut}
+              to="/login"
+            >
+              Logout
+            </NavLink>
+            <div className="border-l-2">
+              <div className="avatar">
+                <div className="w-4 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  {user?.photoUrl ? (
+                    <img src={user?.photoURL} alt="" />
+                  ) : (
+                    <FaUser></FaUser>
+                  )}
+                </div>
+              </div>
+              <p>{user?.displayName}</p>
+            </div>
+          </>
+        ) : (
+          <NavLink
+            to="/login"
+          >
+            Login
+          </NavLink>
+        )}
       </li>
-      <div className="flex justify-center items-center">
-        <input onClick={()=>setDark(!dark)} type="checkbox" className="toggle" />
+      <div className="flex justify-center items-center lg:ml-2">
+        <input
+          onClick={() => setDark(!dark)}
+          type="checkbox"
+          className="toggle"
+        />
       </div>
     </React.Fragment>
   );
