@@ -8,11 +8,13 @@ import ProductDetails from "../pages/Categories/ProductDetails/ProductDetails";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import DisplayError from "../shared/DisplayError";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",
@@ -45,6 +47,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <SecondLayout></SecondLayout>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/login",
