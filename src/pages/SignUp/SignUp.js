@@ -4,6 +4,7 @@ import { AuthContext } from "../../authProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../shared/GoogleLogin";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -11,7 +12,12 @@ const SignUp = () => {
 
   const [createdUserEmail, setCreatedUserEmail] = useState(null);
   // custom hook
+const [token] = useToken(createdUserEmail);
+const navigate = useNavigate();
 
+if (token) {
+  navigate("/");
+}
   const {
     register,
     formState: { errors },
@@ -30,7 +36,7 @@ const SignUp = () => {
         // console.log(userInfo);
         updateUserProfile(userInfo)
           .then(() => {
-            // saveUser(data.name, data.email);
+            saveUser(data.name, data.email, data.user_type);
           })
           .catch((err) => console.error(err));
         toast.success("User created successfully..");
@@ -42,7 +48,21 @@ const SignUp = () => {
       });
   };
 
- 
+ const saveUser = (name, email,user_type) => {
+   const user = { name, email,user_type };
+   fetch("http://localhost:1000/users", {
+     method: "POST",
+     headers: {
+       "content-type": "application/json",
+     },
+     body: JSON.stringify(user),
+   })
+     .then((res) => res.json())
+     .then((data) => {
+         setCreatedUserEmail(email);
+         setSignUpError(data.message)
+     });
+ };
 
   return (
     <div className="h-screen flex justify-center items-center">
@@ -105,6 +125,16 @@ const SignUp = () => {
               </p>
             )}
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">User Type</span>
+            </label>
+            <select name="slot" className="select select-bordered">
+              <option value="Buyer">Buyer</option>
+              <option value="Seller">Seller</option>
+            </select>
+          </div>
+
           <div>
             {signUpError && (
               <p className="text-error text-sm">
