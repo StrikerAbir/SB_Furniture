@@ -60,7 +60,6 @@ if (token) {
      .then((res) => res.json())
      .then((data) => {
          setCreatedUserEmail(email);
-         setSignUpError(data.message)
      });
  };
 
