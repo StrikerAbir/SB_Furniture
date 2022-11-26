@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../assets/images/logo.png'
+import logo from "../assets/images/logo.png";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { FaUser } from "react-icons/fa";
-const NavBar = ({dark,setDark}) => {
+import useRole from "../hooks/useRole";
+import { useQuery } from "@tanstack/react-query";
+const NavBar = ({ dark, setDark }) => {
   const { user, logOut } = useContext(AuthContext);
+
+  const [role] = useRole(user?.email);
+  console.log(role);
   const handleLogOut = () => {
     logOut();
   };
@@ -16,14 +21,60 @@ const NavBar = ({dark,setDark}) => {
         <NavLink to="/blogs">Blogs</NavLink>
 
         <NavLink to="/categories">Categories</NavLink>
+      </li>
+    </React.Fragment>
+  );
 
-        <NavLink to="/Reviews">Reviews</NavLink>
+  const menuItems2 = (
+    <React.Fragment>
+      <li tabIndex={0} className="z-10 font-semibold">
+        <div className="justify-between">
+          DashBoard
+          <svg
+            className="fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+          </svg>
+        </div>
+        <ul className="p-2 bg-base-100">
+          {role?.type === "Buyer" && (
+            <>
+              <li>
+                <Link>My Wishlist</Link>
+                <Link>My Orders</Link>
+              </li>
+            </>
+          )}
+
+          {role?.type === "Seller" && (
+            <>
+              <li>
+                <Link>My Products</Link>
+                <Link>Add a Product</Link>
+                <Link>My Buyers</Link>
+              </li>
+            </>
+          )}
+
+          {role?.type === "Admin" && (
+            <>
+              <li>
+                <Link>All Sellers</Link>
+                <Link>All Buyers</Link>
+                <Link>Reported Items</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </li>
+      <li className="font-semibold">
         {user?.uid ? (
           <>
-            <NavLink
-              onClick={handleLogOut}
-              to="/login"
-            >
+            <NavLink onClick={handleLogOut} to="/login">
               Logout
             </NavLink>
             <div className="border-l-2">
@@ -40,11 +91,7 @@ const NavBar = ({dark,setDark}) => {
             </div>
           </>
         ) : (
-          <NavLink
-            to="/login"
-          >
-            Login
-          </NavLink>
+          <NavLink to="/login">Login</NavLink>
         )}
       </li>
       <div className="flex justify-center items-center lg:ml-2">
@@ -82,17 +129,21 @@ const NavBar = ({dark,setDark}) => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {menuItems}
+              {menuItems2}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            <div className='flex items-center'>
+            <div className="flex items-center">
               <img className="w-10 pr-2" src={logo} alt="" />
-              <h2 className='font-bold'>SB Furniture</h2>
+              <h2 className="font-bold">SB Furniture</h2>
             </div>
           </Link>
         </div>
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+          <ul className="menu menu-horizontal p-0">
+            {menuItems}
+            {menuItems2}
+          </ul>
         </div>
       </div>
     </div>
