@@ -20,22 +20,22 @@ const CheckoutForm = ({ booking }) => {
 
   const [clientSecret, setClientSecret] = useState("");
 
-//   useEffect(() => {
-//     // Create PaymentIntent as soon as the page loads
-//     fetch(
-//       "https://doctors-portal-server-mocha-phi.vercel.app/create-payment-intent",
-//       {
-//         method: "POST",
-//         headers: {
-//           "content-type": "application/json",
-//           authorization: `bearer ${localStorage.getItem("accessToken")}`,
-//         },
-//         body: JSON.stringify({ resale_price }),
-//       }
-//     )
-//       .then((res) => res.json())
-//       .then((data) => setClientSecret(data.clientSecret));
-//   }, [resale_price]);
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("http://localhost:1000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ resale_price }),
+    })
+      .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+          setClientSecret(data.clientSecret)
+      });
+  }, [resale_price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
