@@ -44,7 +44,7 @@ const NavBar = ({ dark, setDark }) => {
           {role?.type === "Buyer" && (
             <>
               <li>
-                <Link>My Wishlist</Link>
+                <Link to='/dashboard/wishlist'>My Wishlist</Link>
                 <Link>My Orders</Link>
               </li>
             </>

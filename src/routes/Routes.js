@@ -6,6 +6,7 @@ import BLogs from "../pages/Blogs/Blogs";
 import Categories from "../pages/Categories/Categories";
 import CategoryProducts from "../pages/Categories/CategoryCard/CategoryProducts/CategoryProducts";
 import ProductDetails from "../pages/Categories/ProductDetails/ProductDetails";
+import MyWishlist from "../pages/Dashboard/MyWishlist/MyWishlist";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
@@ -69,6 +70,11 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     errorElement: <DisplayError></DisplayError>,
-    children: [],
+    children: [
+      {
+        path: "/dashboard/wishlist",
+        element:<MyWishlist></MyWishlist>
+      }
+    ],
   },
 ]);
