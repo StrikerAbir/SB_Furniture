@@ -3,6 +3,7 @@ import useTitle from '../../hooks/useTitle';
 import Categories from '../Categories/Categories';
 import Advertise from './Advertise/Advertise';
 import Banner from './Banner/Banner';
+import Products from './Products/Products';
 import Stats from './Stats/Stats';
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
         <div className='md:mx-0 mx-5'>
             <Banner></Banner>
             <Categories></Categories>
+            <Products></Products>
             <Advertise></Advertise>
             <Stats></Stats>
         </div>
