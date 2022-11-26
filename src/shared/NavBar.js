@@ -4,7 +4,7 @@ import logo from "../assets/images/logo.png";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { FaUser } from "react-icons/fa";
 import useRole from "../hooks/useRole";
-import { useQuery } from "@tanstack/react-query";
+
 const NavBar = ({ dark, setDark }) => {
   const { user, logOut } = useContext(AuthContext);
 

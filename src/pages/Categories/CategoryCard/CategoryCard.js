@@ -5,7 +5,7 @@ import "react-photo-view/dist/react-photo-view.css";
 import { Link } from "react-router-dom";
 const CategoryCard = ({ category }) => {
   const { image, category_name,category_id } = category;
-  console.log(image);
+  // console.log(image);
   return (
     <div className="card card-compact  bg-base-100 rounded-lg shadow-xl">
       <PhotoProvider>

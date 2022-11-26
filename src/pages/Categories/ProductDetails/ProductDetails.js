@@ -7,8 +7,8 @@ import BookingModal from "./BookingModal/BookingModal";
 import { FaCheckCircle } from "react-icons/fa";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
-    const data = useLoaderData();
-    const [product,setProduct]=useState(null)
+  const data = useLoaderData();
+  const [product, setProduct] = useState(null);
   console.log(data);
   const {
     image,
@@ -52,26 +52,26 @@ const ProductDetails = () => {
                     <p>{description}</p>
                   </div>
                   <div className="">
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Location:</span> {location}
                     </p>
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Resale price:</span> $
                       {resale_price}
                     </p>
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Original price:</span> $
                       {original_price}
                     </p>
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Years of use:</span>{" "}
                       {years_of_use}
                     </p>
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Product condition:</span>{" "}
                       {product_condition}
                     </p>
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Post time:</span> {post_time}
                     </p>
                     <div>
@@ -84,15 +84,18 @@ const ProductDetails = () => {
                           <FaCheckCircle className="text-info"></FaCheckCircle>
                         </div>
                       ) : (
-                        <p>{seller_name}</p>
+                        <p>
+                          <span className="font-bold">Seller name: </span>{" "}
+                          {seller_name}
+                        </p>
                       )}
                     </div>
 
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Seller phone:</span>{" "}
                       {seller_phone}
                     </p>
-                    <p classname="mb-2">
+                    <p className="mb-2">
                       <span className="font-bold">Seller email:</span>{" "}
                       {seller_email}
                     </p>
@@ -100,15 +103,19 @@ const ProductDetails = () => {
                       <label
                         disabled={!user ? true : false}
                         htmlFor="booking-modal"
-                                              className=" btn btn-primary"
-                                              onClick={()=>setProduct(data)}
+                        className=" btn btn-primary"
+                        onClick={() => setProduct(data)}
                       >
                         {user ? "BOOK NOW" : "PLEASE LOGIN FIRST"}
                       </label>
                       {product && (
-                        <BookingModal data={data} key={data._id} product={product} setProduct={setProduct}></BookingModal>
+                        <BookingModal
+                          data={data}
+                          key={data._id}
+                          product={product}
+                          setProduct={setProduct}
+                        ></BookingModal>
                       )}
-                      
                     </div>
                   </div>
                 </div>
