@@ -45,7 +45,7 @@ const NavBar = ({ dark, setDark }) => {
             <>
               <li>
                 <Link to='/dashboard/wishlist'>My Wishlist</Link>
-                <Link>My Orders</Link>
+                <Link to='/dashboard/myOrders'>My Orders</Link>
               </li>
             </>
           )}
