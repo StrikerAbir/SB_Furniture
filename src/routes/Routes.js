@@ -7,6 +7,7 @@ import Categories from "../pages/Categories/Categories";
 import CategoryProducts from "../pages/Categories/CategoryCard/CategoryProducts/CategoryProducts";
 import ProductDetails from "../pages/Categories/ProductDetails/ProductDetails";
 import MyWishlist from "../pages/Dashboard/MyWishlist/MyWishlist";
+import Payment from "../pages/Dashboard/MyWishlist/Payment/Payment";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
@@ -73,8 +74,14 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/wishlist",
-        element:<MyWishlist></MyWishlist>
-      }
+        element: <MyWishlist></MyWishlist>,
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: async ({ params }) =>
+          fetch(`http://localhost:1000/booking/${params.id}`),
+      },
     ],
   },
 ]);

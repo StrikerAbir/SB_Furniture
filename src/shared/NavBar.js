@@ -9,7 +9,7 @@ const NavBar = ({ dark, setDark }) => {
   const { user, logOut } = useContext(AuthContext);
 
   const [role] = useRole(user?.email);
-  console.log(role);
+  // console.log(role);
   const handleLogOut = () => {
     logOut();
   };
