@@ -88,7 +88,7 @@ const CheckoutForm = ({ booking }) => {
         bookingId: _id,
       };
       // store in data base payment
-      fetch("https://doctors-portal-server-mocha-phi.vercel.app/payments", {
+      fetch("http://localhost:1000/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -97,8 +97,9 @@ const CheckoutForm = ({ booking }) => {
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
+          .then((data) => {
+            console.log(data);
+          if (data.modifiedCount) {
             setSuccess("Congrats! your payment succeeded.");
             setTransactionId(paymentIntent.id);
           }
@@ -145,8 +146,7 @@ const CheckoutForm = ({ booking }) => {
         <div>
           <p className="text-primary mt-2">{success}</p>
           <p>
-            Your transactionId:{" "}
-            <span className="font-bold">{transactionId}</span>
+            Your transactionId:{" "}<span className="font-bold">{transactionId}</span>
           </p>
         </div>
       )}
