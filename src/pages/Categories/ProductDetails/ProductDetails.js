@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
@@ -7,7 +7,8 @@ import BookingModal from "./BookingModal/BookingModal";
 import { FaCheckCircle } from "react-icons/fa";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
-  const data = useLoaderData();
+    const data = useLoaderData();
+    const [product,setProduct]=useState(null)
   console.log(data);
   const {
     image,
@@ -37,7 +38,11 @@ const ProductDetails = () => {
             <div className="card lg:card-side bg-base-100 mx-3 rounded-none">
               <PhotoProvider>
                 <PhotoView src={image}>
-                  <img className="lg:w-1/2" src={image} alt="" />
+                  <img
+                    className="lg:w-1/2 border-r-4 border-warning"
+                    src={image}
+                    alt=""
+                  />
                 </PhotoView>
               </PhotoProvider>
               <div className="flex justify-center items-center lg:w-1/2">
@@ -72,11 +77,11 @@ const ProductDetails = () => {
                     <div>
                       {seller_verified ? (
                         <div className="flex items-center">
-                          <div className='mr-1'>
+                          <div className="mr-1">
                             <span className="font-bold">Seller name: </span>{" "}
                             {seller_name}
                           </div>
-                          <FaCheckCircle className='text-info'></FaCheckCircle>
+                          <FaCheckCircle className="text-info"></FaCheckCircle>
                         </div>
                       ) : (
                         <p>{seller_name}</p>
@@ -95,11 +100,15 @@ const ProductDetails = () => {
                       <label
                         disabled={!user ? true : false}
                         htmlFor="booking-modal"
-                        className=" btn btn-primary"
+                                              className=" btn btn-primary"
+                                              onClick={()=>setProduct(data)}
                       >
                         {user ? "BOOK NOW" : "PLEASE LOGIN FIRST"}
                       </label>
-                      <BookingModal data={data} key={data._id}></BookingModal>
+                      {product && (
+                        <BookingModal data={data} key={data._id} product={product} setProduct={setProduct}></BookingModal>
+                      )}
+                      
                     </div>
                   </div>
                 </div>
