@@ -77,7 +77,7 @@ const MyWishlist = () => {
                     <td>
                       <button
                         onClick={() => handleDelete(booking._id)}
-                        className="btn btn-sm bg-error border-none"
+                        className="btn btn-sm btn-outline bg-error border-none"
                       >
                         Remove
                       </button>
@@ -86,7 +86,7 @@ const MyWishlist = () => {
                       {booking.status === "Pay" && (
                         <Link
                           to={`/dashboard/payment/${booking._id}`}
-                          className="btn btn-sm btn-warning"
+                          className="btn btn-sm btn-outline btn-warning"
                         >
                           Pay
                         </Link>

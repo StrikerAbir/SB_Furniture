@@ -96,7 +96,7 @@ const MyAds = () => {
                       <label
                         onClick={() => setDeleting(product)}
                         htmlFor="ConfirmationModal"
-                        className="btn btn-sm bg-error"
+                        className="btn btn-sm btn-outline bg-error"
                       >
                         Delete
                       </label>

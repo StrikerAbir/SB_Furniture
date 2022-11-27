@@ -25,6 +25,7 @@ const ProductDetails = () => {
     seller_email,
     description,
   } = data;
+  console.log(data);
   
 
   const url = `http://localhost:1000/users/status/email?email=${seller_email}`;

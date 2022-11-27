@@ -1,12 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import useTitle from "../../../hooks/useTitle";
+import ConfirmationModal from "../../../shared/ConfirmationModal";
 import Loading from "../../../shared/Loading";
 
 const AllBuyer = () => {
-  const url = `http://localhost:1000/users/status?type=Buyer`;
   useTitle("All Buyers");
+
+  const [deleting, setDeleting] = useState(null);
+  const closeModal = () => {
+    setDeleting(null);
+  };
+  const url = `http://localhost:1000/users/status?type=Buyer`;
   const {
     data: users,
     isLoading,
@@ -25,9 +31,9 @@ const AllBuyer = () => {
     },
   });
 
-  const handleDelete = (email) => {
-    console.log(email);
-    fetch(`http://localhost:1000/users/${email}`, {
+  const handleDelete = (data) => {
+    console.log(data.email);
+    fetch(`http://localhost:1000/users/${data.email}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -74,12 +80,13 @@ const AllBuyer = () => {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td className="flex items-center">
-                      <button
-                        onClick={() => handleDelete(user?.email)}
-                        className="btn btn-outline btn-error btn-sm"
+                      <label
+                        onClick={() => setDeleting(user)}
+                        htmlFor="ConfirmationModal"
+                        className="btn btn-sm btn-error btn-outline"
                       >
-                        delete
-                      </button>
+                        Delete
+                      </label>
                     </td>
                   </tr>
                 ))}
@@ -87,6 +94,16 @@ const AllBuyer = () => {
             </table>
           </div>
         </div>
+      )}
+      {deleting && (
+        <ConfirmationModal
+          title={`Are you sure want to delete?`}
+          message={`If you delete ${deleting.title}. It cannot be recoverable.`}
+          closeModal={closeModal}
+          successButton="Delete"
+          successAction={handleDelete}
+          modalData={deleting}
+        ></ConfirmationModal>
       )}
     </div>
   );

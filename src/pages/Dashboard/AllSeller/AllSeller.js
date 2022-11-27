@@ -1,12 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import useTitle from "../../../hooks/useTitle";
+import ConfirmationModal from "../../../shared/ConfirmationModal";
 
 import Loading from "../../../shared/Loading";
 
 const AllSeller = () => {
   useTitle("All Sellers");
+
+  const [deleting, setDeleting] = useState(null);
+  const closeModal = () => {
+    setDeleting(null);
+  };
+
   const url = `http://localhost:1000/users/status?type=Seller`;
 
   const {
@@ -45,9 +52,9 @@ const AllSeller = () => {
       });
   };
 
-  const handleDelete = (email) => {
-    console.log(email);
-    fetch(`http://localhost:1000/users/${email}`, {
+  const handleDelete = (user) => {
+    console.log(user.email);
+    fetch(`http://localhost:1000/users/${user.email}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -93,7 +100,7 @@ const AllSeller = () => {
                     <th>{index + 1}</th>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
-                    <td className="flex items-center">
+                    <td>
                       {user.seller_verified ? (
                         <>
                           <div className="text-primary">Verified</div>
@@ -106,12 +113,15 @@ const AllSeller = () => {
                           Verify
                         </button>
                       )}
-                      <button
-                        onClick={() => handleDelete(user?.email)}
-                        className="btn btn-outline btn-error btn-sm ml-4"
+                    </td>
+                    <td>
+                      <label
+                        onClick={() => setDeleting(user)}
+                        htmlFor="ConfirmationModal"
+                        className="btn btn-sm btn-error btn-outline"
                       >
-                        delete
-                      </button>
+                        Delete
+                      </label>
                     </td>
                   </tr>
                 ))}
@@ -119,6 +129,16 @@ const AllSeller = () => {
             </table>
           </div>
         </div>
+      )}
+      {deleting && (
+        <ConfirmationModal
+          title={`Are you sure want to delete?`}
+          message={`If you delete ${deleting.title}. It cannot be recoverable.`}
+          closeModal={closeModal}
+          successButton="Delete"
+          successAction={handleDelete}
+          modalData={deleting}
+        ></ConfirmationModal>
       )}
     </div>
   );
