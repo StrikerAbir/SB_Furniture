@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../authProvider/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
 import ConfirmationModal from "../../../shared/ConfirmationModal";
@@ -110,13 +111,19 @@ const MyProducts = () => {
                     <td>{product.title}</td>
                     <td>$ {product.resale_price}</td>
                     <td>$ {product.original_price}</td>
-                    <td>{product.status==='Paid'?'Sold':'Available' }</td>
+                    <td>{product.status === "Paid" ? "Sold" : "Available"}</td>
                     <td>
+                      <Link
+                        to={`/dashboard/updateProduct/${product._id}`}
+                        className="btn btn-sm btn-outline btn-warning"
+                      >
+                        Update
+                      </Link>
                       {/* The button to open modal */}
                       <label
                         onClick={() => setDeleting(product)}
                         htmlFor="ConfirmationModal"
-                        className="btn btn-sm btn-error btn-outline"
+                        className="btn btn-sm btn-error btn-outline ml-4"
                       >
                         Delete
                       </label>

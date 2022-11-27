@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../authProvider/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
-import Loading from "../../../shared/Loading";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
@@ -50,21 +49,21 @@ const AddProducts = () => {
           };
           console.log(product);
 
-          //   save product info to the database.
-          //   fetch("http://localhost:1000/product", {
-          //     method: "POST",
-          //     headers: {
-          //       "content-type": "application/json",
-          //       authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          //     },
-          //     body: JSON.stringify(product),
-          //   })
-          //     .then((res) => res.json())
-          //     .then((result) => {
-          //       console.log(result);
-          //       toast.success("Product added successfully.");
-          //       navigate("/dashboard/myProducts");
-          //     });
+            // save product info to the database.
+            fetch("http://localhost:1000/product", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+              body: JSON.stringify(product),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                console.log(result);
+                toast.success("Product added successfully.");
+                navigate("/dashboard/myProducts");
+              });
         }
       });
   };
