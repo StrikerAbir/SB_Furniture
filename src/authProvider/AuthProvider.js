@@ -3,6 +3,7 @@ import app from "../firebase/firebase.config";
 
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -48,6 +49,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+
   // observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -67,6 +69,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     googleProviderLogin,
     resetPassword,
+
   };
   return (
     <div>

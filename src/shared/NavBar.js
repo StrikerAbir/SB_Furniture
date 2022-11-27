@@ -66,7 +66,7 @@ const NavBar = ({ dark, setDark }) => {
             <>
               <li>
                 <Link to='/dashboard/allSeller'>All Sellers</Link>
-                <Link>All Buyers</Link>
+                <Link to='/dashboard/allBuyer'>All Buyers</Link>
               </li>
             </>
           )}
