@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { useLoaderData } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../../authProvider/AuthProvider";
 import BookingModal from "./BookingModal/BookingModal";
 import { FaCheckCircle } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
@@ -20,11 +21,33 @@ const ProductDetails = () => {
     product_condition,
     post_time,
     seller_name,
-    seller_verified,
     seller_phone,
     seller_email,
     description,
   } = data;
+  
+
+  const url = `http://localhost:1000/users/status/email?email=${seller_email}`;
+
+  const {
+    data: singleUser,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      return data;
+    },
+    
+  });
+
   useTitle(title);
   return (
     <div>
@@ -78,7 +101,7 @@ const ProductDetails = () => {
                       <span className="font-bold">Post time:</span> {post_time}
                     </p>
                     <div>
-                      {seller_verified ? (
+                      {singleUser?.seller_verified ? (
                         <div className="flex items-center">
                           <div className="mr-1">
                             <span className="font-bold">Seller name: </span>{" "}

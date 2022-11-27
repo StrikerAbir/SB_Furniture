@@ -65,7 +65,7 @@ const NavBar = ({ dark, setDark }) => {
           {role?.type === "Admin" && (
             <>
               <li>
-                <Link>All Sellers</Link>
+                <Link to='/dashboard/allSeller'>All Sellers</Link>
                 <Link>All Buyers</Link>
               </li>
             </>
