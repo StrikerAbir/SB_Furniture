@@ -23,7 +23,7 @@ const CategoryCard = ({ category }) => {
           <h2 className="card-title">{category_name}</h2>
           <div className="card-actions items-center">
             <Link
-              to={`/categories/products/${category_id}}`}
+              to={`/categories/products/${category_id}`}
               className="btn bg-primary hover:bg-primary hover:bg-opacity-70 text-neutral border-none rounded-sm"
             >
               More Products

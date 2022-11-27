@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const [product, setProduct] = useState(null);
-  console.log(data);
+  // console.log(data);
   const {
     image,
     title,
@@ -49,7 +49,10 @@ const ProductDetails = () => {
                 <div className="card-body">
                   <h2 className="card-title">Title: {title}</h2>
                   <div>
-                    <p>{description}</p>
+                    <p>
+                      <span className="font-bold">Description: </span>
+                       {description}
+                    </p>
                   </div>
                   <div className="">
                     <p className="mb-2">
