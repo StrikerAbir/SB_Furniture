@@ -110,20 +110,20 @@ const MyProducts = () => {
                     <td>{product.title}</td>
                     <td>$ {product.resale_price}</td>
                     <td>$ {product.original_price}</td>
-                    <td>$ status</td>
+                    <td>{product.status==='Paid'?'Sold':'Available' }</td>
                     <td>
                       {/* The button to open modal */}
                       <label
                         onClick={() => setDeleting(product)}
                         htmlFor="ConfirmationModal"
-                        className="btn btn-sm bg-error"
+                        className="btn btn-sm btn-error btn-outline"
                       >
                         Delete
                       </label>
 
                       <button
                         onClick={() => handleAd(product)}
-                        className="btn btn-primary btn-sm ml-4"
+                        className="btn btn-primary btn-outline btn-sm ml-4"
                       >
                         Advertise It
                       </button>
