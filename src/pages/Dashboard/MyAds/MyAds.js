@@ -5,14 +5,14 @@ import { AuthContext } from "../../../authProvider/AuthProvider";
 import ConfirmationModal from "../../../shared/ConfirmationModal";
 import Loading from "../../../shared/Loading";
 
-const MyProducts = () => {
-    const { user } = useContext(AuthContext);
-    const [deleting, setDeleting] = useState(null);
-    const closeModal = () => {
-        setDeleting(null);
-    };
-    
-    const url = `http://localhost:1000/sellerProducts/${user?.email}`;
+const MyAds = () => {
+  const { user } = useContext(AuthContext);
+  const [deleting, setDeleting] = useState(null);
+  const closeModal = () => {
+    setDeleting(null);
+  };
+
+  const url = `http://localhost:1000/adsProducts/${user?.email}`;
   const {
     data: products,
     isLoading,
@@ -26,46 +26,29 @@ const MyProducts = () => {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
           },
         });
-          const data = await res.json();
+        const data = await res.json();
         //   console.log(data);
         return data;
       } catch (e) {}
     },
   });
 
-    const handleDeleteProduct = (product) => {
-    //   console.log(product);
-      fetch(`http://localhost:1000/sellerProducts/${product._id}`, {
-        method: "DELETE",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          refetch();
-          toast.success(`${product.title} deleted successfully`);
-        });
-    };
+ const handleDeleteProduct = (product) => {
+     console.log(product);
+   fetch(`http://localhost:1000/adsDelete/${product._id}`, {
+     method: "DELETE",
+     headers: {
+       authorization: `bearer ${localStorage.getItem("accessToken")}`,
+     },
+   })
+     .then((res) => res.json())
+     .then((data) => {
+       console.log(data);
+       refetch();
+       toast.success(`${product.title} deleted successfully`);
+     });
+ };
 
-    const handleAd = (product) => {
-        console.log(product);
-        fetch(`http://localhost:1000/advertiseProduct`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify(product),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            refetch();
-            toast.success(`${product.title} Added to ads successfully`);
-          });
-    }
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -115,9 +98,7 @@ const MyProducts = () => {
                         className="btn btn-sm bg-error"
                       >
                         Delete
-                            </label>
-                            
-                        <button onClick={()=>handleAd(product)} className='btn btn-primary btn-sm ml-4'>Advertise It</button>
+                      </label>
                     </td>
                   </tr>
                 ))}
@@ -140,4 +121,4 @@ const MyProducts = () => {
   );
 };
 
-export default MyProducts;
+export default MyAds;

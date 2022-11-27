@@ -6,6 +6,8 @@ import BLogs from "../pages/Blogs/Blogs";
 import Categories from "../pages/Categories/Categories";
 import CategoryProducts from "../pages/Categories/CategoryCard/CategoryProducts/CategoryProducts";
 import ProductDetails from "../pages/Categories/ProductDetails/ProductDetails";
+import AddProducts from "../pages/Dashboard/AddProducts/AddProducts";
+import MyAds from "../pages/Dashboard/MyAds/MyAds";
 import MyBuyer from "../pages/Dashboard/MyBuyer/MyBuyer";
 import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../pages/Dashboard/MyProducts/MyProducts";
@@ -40,8 +42,7 @@ export const router = createBrowserRouter([
         element: <CategoryProducts></CategoryProducts>,
         loader: async ({ params }) =>
           fetch(
-            `http://localhost:1000/categories/products?cat_id=${params.id}`
-          ),
+            `http://localhost:1000/categories/products?cat_id=${params.id}`),
       },
       {
         path: "/product/:id",
@@ -96,6 +97,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/myBuyer",
         element: <MyBuyer></MyBuyer>,
+      },
+      {
+        path: "/dashboard/myAds",
+        element: <MyAds></MyAds>,
+      },
+      {
+        path: "/dashboard/addProducts",
+        element: <AddProducts></AddProducts>,
       },
     ],
   },

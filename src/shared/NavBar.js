@@ -55,8 +55,9 @@ const NavBar = ({ dark, setDark }) => {
             <>
               <li>
                 <Link to="/dashboard/myProducts">My Products</Link>
-                <Link>Add a Product</Link>
+                <Link to='/dashboard/addProducts'>Add a Product</Link>
                 <Link to="/dashboard/myBuyer">My Buyers</Link>
+                <Link to="/dashboard/myAds">My Ads</Link>
               </li>
             </>
           )}
@@ -66,7 +67,6 @@ const NavBar = ({ dark, setDark }) => {
               <li>
                 <Link>All Sellers</Link>
                 <Link>All Buyers</Link>
-                <Link>Reported Items</Link>
               </li>
             </>
           )}
