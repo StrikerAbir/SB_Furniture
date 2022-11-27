@@ -111,7 +111,13 @@ const MyProducts = () => {
                     <td>{product.title}</td>
                     <td>$ {product.resale_price}</td>
                     <td>$ {product.original_price}</td>
-                    <td>{product.status === "Paid" ? "Sold" : "Available"}</td>
+                    <td>
+                      {product.status === "Paid" ? (
+                        <span className="btn btn-primary btn-sm">Sold</span>
+                      ) : (
+                        <span className="btn btn-outline btn-sm">Available</span>
+                      )}
+                    </td>
                     <td>
                       <Link
                         to={`/dashboard/updateProduct/${product._id}`}
