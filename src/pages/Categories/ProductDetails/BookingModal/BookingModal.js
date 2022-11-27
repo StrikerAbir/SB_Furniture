@@ -5,7 +5,7 @@ import { AuthContext } from "../../../../authProvider/AuthProvider";
 
 const BookingModal = ({data,product,setProduct}) => {
   const { user } = useContext(AuthContext);
-  const { title, _id, resale_price } = data;
+  const { title, _id, resale_price,seller_email } = data;
   const date=new Date();
   
   const handleSubmit = (event) => {
@@ -23,6 +23,7 @@ const BookingModal = ({data,product,setProduct}) => {
       buyer_phone: phone,
       buy_date: date,
       resale_price,
+      seller_email,
       status: 'Pay'
     };
 

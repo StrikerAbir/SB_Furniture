@@ -56,7 +56,7 @@ const NavBar = ({ dark, setDark }) => {
               <li>
                 <Link to="/dashboard/myProducts">My Products</Link>
                 <Link>Add a Product</Link>
-                <Link>My Buyers</Link>
+                <Link to="/dashboard/myBuyer">My Buyers</Link>
               </li>
             </>
           )}
@@ -107,7 +107,7 @@ const NavBar = ({ dark, setDark }) => {
   return (
     <div className="border-0 border-b border-warning py-3">
       <div className="navbar bg-base-100 justify-between">
-        <div className="navbar-start">
+        <div className="navbar">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -140,7 +140,7 @@ const NavBar = ({ dark, setDark }) => {
             </div>
           </Link>
         </div>
-        <div className="navbar-end hidden lg:flex">
+        <div className="navbar hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             {menuItems}
             {menuItems2}
