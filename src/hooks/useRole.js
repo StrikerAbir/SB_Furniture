@@ -15,7 +15,7 @@ const useRole = (email) => {
       return data;
     }
   });
-  return [roles]
+  return [roles,refetch]
 }
 
 export default useRole;

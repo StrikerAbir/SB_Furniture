@@ -8,8 +8,9 @@ import useRole from "../hooks/useRole";
 const NavBar = ({ dark, setDark }) => {
   const { user, logOut } = useContext(AuthContext);
 
-  const [role] = useRole(user?.email);
+  const [role,refetch] = useRole(user?.email);
   // console.log(role);
+  // refetch();
   const handleLogOut = () => {
     logOut();
   };
@@ -44,8 +45,8 @@ const NavBar = ({ dark, setDark }) => {
           {role?.type === "Buyer" && (
             <>
               <li>
-                <Link to='/dashboard/wishlist'>My Wishlist</Link>
-                <Link to='/dashboard/myOrders'>My Orders</Link>
+                <Link to="/dashboard/wishlist">My Wishlist</Link>
+                <Link to="/dashboard/myOrders">My Orders</Link>
               </li>
             </>
           )}
@@ -53,7 +54,7 @@ const NavBar = ({ dark, setDark }) => {
           {role?.type === "Seller" && (
             <>
               <li>
-                <Link>My Products</Link>
+                <Link to="/dashboard/myProducts">My Products</Link>
                 <Link>Add a Product</Link>
                 <Link>My Buyers</Link>
               </li>
