@@ -2,17 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../authProvider/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import ConfirmationModal from "../../../shared/ConfirmationModal";
 import Loading from "../../../shared/Loading";
 
 const MyProducts = () => {
-    const { user } = useContext(AuthContext);
-    const [deleting, setDeleting] = useState(null);
-    const closeModal = () => {
-        setDeleting(null);
-    };
-    
-    const url = `http://localhost:1000/sellerProducts/${user?.email}`;
+  useTitle("My Products");
+  const { user } = useContext(AuthContext);
+  const [deleting, setDeleting] = useState(null);
+  const closeModal = () => {
+    setDeleting(null);
+  };
+
+  const url = `http://localhost:1000/sellerProducts/${user?.email}`;
   const {
     data: products,
     isLoading,
@@ -26,52 +28,52 @@ const MyProducts = () => {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
           },
         });
-          const data = await res.json();
+        const data = await res.json();
         //   console.log(data);
         return data;
       } catch (e) {}
     },
   });
 
-    const handleDeleteProduct = (product) => {
+  const handleDeleteProduct = (product) => {
     //   console.log(product);
-      fetch(`http://localhost:1000/sellerProducts/${product._id}`, {
-        method: "DELETE",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          refetch();
-          toast.success(`${product.title} deleted successfully`);
-        });
-    };
+    fetch(`http://localhost:1000/sellerProducts/${product._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        toast.success(`${product.title} deleted successfully`);
+      });
+  };
 
-    const handleAd = (product) => {
-        console.log(product);
-        fetch(`http://localhost:1000/advertiseProduct`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify(product),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            refetch();
-            toast.success(`${product.title} Added to ads successfully`);
-          });
-    }
+  const handleAd = (product) => {
+    console.log(product);
+    fetch(`http://localhost:1000/advertiseProduct`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        toast.success(`${product.title} Added to ads successfully`);
+      });
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
   }
   return (
-    <div className="bg-base-200 p-10 h-screen">
+    <div className="bg-base-200 p-10  ">
       <h3 className="text-3xl my-5 ">My Products</h3>
       {products?.length === 0 ? (
         <p className="text-3xl my-5 text-center">
@@ -89,6 +91,7 @@ const MyProducts = () => {
                   <th>Name</th>
                   <th>Old Price</th>
                   <th>New Price</th>
+                  <th>status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -107,6 +110,7 @@ const MyProducts = () => {
                     <td>{product.title}</td>
                     <td>$ {product.resale_price}</td>
                     <td>$ {product.original_price}</td>
+                    <td>$ status</td>
                     <td>
                       {/* The button to open modal */}
                       <label
@@ -115,9 +119,14 @@ const MyProducts = () => {
                         className="btn btn-sm bg-error"
                       >
                         Delete
-                            </label>
-                            
-                        <button onClick={()=>handleAd(product)} className='btn btn-primary btn-sm ml-4'>Advertise It</button>
+                      </label>
+
+                      <button
+                        onClick={() => handleAd(product)}
+                        className="btn btn-primary btn-sm ml-4"
+                      >
+                        Advertise It
+                      </button>
                     </td>
                   </tr>
                 ))}

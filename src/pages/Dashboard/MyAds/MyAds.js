@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../authProvider/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import ConfirmationModal from "../../../shared/ConfirmationModal";
 import Loading from "../../../shared/Loading";
 
 const MyAds = () => {
+  useTitle("MyAds");
   const { user } = useContext(AuthContext);
   const [deleting, setDeleting] = useState(null);
   const closeModal = () => {
@@ -33,28 +35,27 @@ const MyAds = () => {
     },
   });
 
- const handleDeleteProduct = (product) => {
-     console.log(product);
-   fetch(`http://localhost:1000/adsDelete/${product._id}`, {
-     method: "DELETE",
-     headers: {
-       authorization: `bearer ${localStorage.getItem("accessToken")}`,
-     },
-   })
-     .then((res) => res.json())
-     .then((data) => {
-       console.log(data);
-       refetch();
-       toast.success(`${product.title} deleted successfully`);
-     });
- };
-
+  const handleDeleteProduct = (product) => {
+    console.log(product);
+    fetch(`http://localhost:1000/adsDelete/${product._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        toast.success(`${product.title} deleted successfully`);
+      });
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
   }
   return (
-    <div className="bg-base-200 p-10 h-screen">
+    <div className="bg-base-200 p-10  ">
       <h3 className="text-3xl my-5 ">My Products</h3>
       {products?.length === 0 ? (
         <p className="text-3xl my-5 text-center">

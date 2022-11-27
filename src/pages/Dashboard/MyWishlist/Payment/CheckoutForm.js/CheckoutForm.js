@@ -86,6 +86,7 @@ const CheckoutForm = ({ booking }) => {
         resale_price,
         transactionId: paymentIntent.id,
         bookingId: _id,
+        productId:product_id
       };
       // store in data base payment
       fetch("http://localhost:1000/payments", {

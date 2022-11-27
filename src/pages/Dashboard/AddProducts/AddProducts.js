@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../authProvider/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import Loading from "../../../shared/Loading";
 
 const AddProducts = () => {
-    const {user}= useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  useTitle("Add Products");
   const {
     register,
     formState: { errors },
@@ -16,8 +18,8 @@ const AddProducts = () => {
   const navigate = useNavigate();
   const imageHostKey = process.env.REACT_APP_imagebb_key;
 
-    const handleAddProduct = (data) => {
-      const date=format(new Date(),'Pp')
+  const handleAddProduct = (data) => {
+    const date = format(new Date(), "Pp");
     const image = data.img[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -30,45 +32,45 @@ const AddProducts = () => {
       .then((imgData) => {
         console.log(imgData);
         if (imgData.success) {
-            const product = {
-              category_id: data.category_id,
-                image: imgData.data.url,
-                title: data.title,
-                location: data.location,
-                resale_price: data.resale_price,
-                original_price: data.original_price,
-                years_of_use: data.years_of_use,
-                product_condition: data.product_condition,
-                post_time: date,
-                seller_name: user?.displayName,
-                seller_verified: '',
-                seller_phone: data.seller_phone,
-                seller_email: user?.email,
-                description: data.description,
-            };
-            console.log(product);
+          const product = {
+            category_id: data.category_id,
+            image: imgData.data.url,
+            title: data.title,
+            location: data.location,
+            resale_price: data.resale_price,
+            original_price: data.original_price,
+            years_of_use: data.years_of_use,
+            product_condition: data.product_condition,
+            post_time: date,
+            seller_name: user?.displayName,
+            seller_verified: "",
+            seller_phone: data.seller_phone,
+            seller_email: user?.email,
+            description: data.description,
+          };
+          console.log(product);
 
-        //   save product info to the database.
-        //   fetch("http://localhost:1000/product", {
-        //     method: "POST",
-        //     headers: {
-        //       "content-type": "application/json",
-        //       authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        //     },
-        //     body: JSON.stringify(product),
-        //   })
-        //     .then((res) => res.json())
-        //     .then((result) => {
-        //       console.log(result);
-        //       toast.success("Product added successfully.");
-        //       navigate("/dashboard/myProducts");
-        //     });
+          //   save product info to the database.
+          //   fetch("http://localhost:1000/product", {
+          //     method: "POST",
+          //     headers: {
+          //       "content-type": "application/json",
+          //       authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          //     },
+          //     body: JSON.stringify(product),
+          //   })
+          //     .then((res) => res.json())
+          //     .then((result) => {
+          //       console.log(result);
+          //       toast.success("Product added successfully.");
+          //       navigate("/dashboard/myProducts");
+          //     });
         }
       });
   };
 
   return (
-    <div className="bg-base-200 p-10 h-screen">
+    <div className="bg-base-200 p-10  ">
       <h3 className="text-3xl my-5">Add Product</h3>
       <form onSubmit={handleSubmit(handleAddProduct)}>
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
@@ -259,7 +261,11 @@ const AddProducts = () => {
           )}
         </div>
         <div className="form-control mt-4">
-          <input className="btn btn-primary" type="submit" value="Add Product" />
+          <input
+            className="btn btn-primary"
+            type="submit"
+            value="Add Product"
+          />
         </div>
       </form>
     </div>

@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 
 import Loading from "../../../shared/Loading";
 
 const AllSeller = () => {
-
+  useTitle("All Sellers");
   const url = `http://localhost:1000/users/status?type=Seller`;
 
   const {
@@ -21,7 +22,7 @@ const AllSeller = () => {
         },
       });
       const data = await res.json();
-    //   console.log(data);
+      //   console.log(data);
       return data;
     },
   });
@@ -35,18 +36,17 @@ const AllSeller = () => {
       },
     })
       .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            if (data.modifiedCount) {
-                toast.success('Verification done.')
-                refetch()
-            }
-        });
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          toast.success("Verification done.");
+          refetch();
+        }
+      });
   };
 
-    const handleDelete = (email) => {
-
-      console.log(email);
+  const handleDelete = (email) => {
+    console.log(email);
     fetch(`http://localhost:1000/users/${email}`, {
       method: "DELETE",
       headers: {
@@ -58,8 +58,7 @@ const AllSeller = () => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount) {
-            toast.success("User deleted done.");
-            
+          toast.success("User deleted done.");
 
           refetch();
         }
@@ -70,7 +69,7 @@ const AllSeller = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="bg-base-200 p-10 h-screen">
+    <div className="bg-base-200 p-10  ">
       <h3 className="text-3xl my-5 ">All Sellers</h3>
       {users.length === 0 ? (
         <p className="text-3xl my-5 text-center">There are no Sellers</p>
