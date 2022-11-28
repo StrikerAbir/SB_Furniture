@@ -9,7 +9,7 @@ const SingleCard = ({ product }) => {
       <PhotoProvider>
         <PhotoView src={image}>
           <img
-            className="w-[490px] h-[490px] border-4 border-warning"
+            className="lg:w-[490px] lg:h-[490px] border-4 border-warning"
             src={image}
             alt=""
           />

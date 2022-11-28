@@ -35,7 +35,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setLoginUserEmail(data.email);
+        setLoginUserEmail(user.email);
         toast.success("Successfully login..");
       })
       .catch((err) => {

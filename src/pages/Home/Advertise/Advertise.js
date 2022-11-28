@@ -4,23 +4,7 @@ import Loading from "../../../shared/Loading";
 import AdsCard from "./AdsCard/AdsCard";
 
 const Advertise = ({ads,isLoading,refetch}) => {
-//   const {
-//     data: ads=[],
-//     isLoading,
-//     refetch,
-//   } = useQuery({
-//     queryKey: ["user"],
-//     queryFn: async () => {
-//       const res = await fetch("http://localhost:1000/ads", {
-//         headers: {
-//           authorization: `bearer ${localStorage.getItem("accessToken")}`,
-//         },
-//       });
-//       const data = await res.json();
-//       console.log(data);
-//       return data;
-//     },
-//   });
+
     if (isLoading) {
         return<Loading></Loading>
     }
