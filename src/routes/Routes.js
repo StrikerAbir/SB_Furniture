@@ -21,6 +21,8 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import DisplayError from "../shared/DisplayError";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
+import AdminRoute from "./SellerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -96,33 +98,61 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/myProducts",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/updateProduct/:id",
-        element: <UpdateProduct></UpdateProduct>,
+        element: (
+          <SellerRoute>
+            <UpdateProduct></UpdateProduct>
+          </SellerRoute>
+        ),
         loader: async ({ params }) =>
           fetch(`http://localhost:1000/product/${params.id}`),
       },
       {
         path: "/dashboard/myBuyer",
-        element: <MyBuyer></MyBuyer>,
+        element: (
+          <SellerRoute>
+            <MyBuyer></MyBuyer>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/myAds",
-        element: <MyAds></MyAds>,
+        element: (
+          <SellerRoute>
+            <MyAds></MyAds>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/addProducts",
-        element: <AddProducts></AddProducts>,
+        element: (
+          <SellerRoute>
+            <AddProducts></AddProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/allSeller",
-        element: <AllSeller></AllSeller>,
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allBuyer",
-        element: <AllBuyer></AllBuyer>,
+        element: (
+          <AdminRoute>
+            <AllBuyer></AllBuyer>
+          </AdminRoute>
+        ),
       },
     ],
   },
