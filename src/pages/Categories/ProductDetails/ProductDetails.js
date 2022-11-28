@@ -26,9 +26,8 @@ const ProductDetails = () => {
     description,
   } = data;
   console.log(data);
-  
 
-  const url = `http://localhost:1000/users/status/email?email=${seller_email}`;
+  const url = ` https://sb-furniture-server-side.vercel.app/users/status/email?email=${seller_email}`;
 
   const {
     data: singleUser,
@@ -46,7 +45,6 @@ const ProductDetails = () => {
       console.log(data);
       return data;
     },
-    
   });
 
   useTitle(title);
@@ -75,7 +73,7 @@ const ProductDetails = () => {
                   <div>
                     <p>
                       <span className="font-bold">Description: </span>
-                       {description}
+                      {description}
                     </p>
                   </div>
                   <div className="">

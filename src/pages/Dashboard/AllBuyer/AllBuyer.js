@@ -12,7 +12,7 @@ const AllBuyer = () => {
   const closeModal = () => {
     setDeleting(null);
   };
-  const url = `http://localhost:1000/users/status?type=Buyer`;
+  const url = ` https://sb-furniture-server-side.vercel.app/users/status?type=Buyer`;
   const {
     data: users,
     isLoading,
@@ -33,7 +33,7 @@ const AllBuyer = () => {
 
   const handleDelete = (data) => {
     console.log(data.email);
-    fetch(`http://localhost:1000/users/${data.email}`, {
+    fetch(` https://sb-furniture-server-side.vercel.app/users/${data.email}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

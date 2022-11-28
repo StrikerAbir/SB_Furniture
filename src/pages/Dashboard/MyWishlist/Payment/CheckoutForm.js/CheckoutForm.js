@@ -22,18 +22,21 @@ const CheckoutForm = ({ booking }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:1000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ resale_price }),
-    })
+    fetch(
+      " https://sb-furniture-server-side.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ resale_price }),
+      }
+    )
       .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-          setClientSecret(data.clientSecret)
+      .then((data) => {
+        console.log(data);
+        setClientSecret(data.clientSecret);
       });
   }, [resale_price]);
 
@@ -86,10 +89,10 @@ const CheckoutForm = ({ booking }) => {
         resale_price,
         transactionId: paymentIntent.id,
         bookingId: _id,
-        productId:product_id
+        productId: product_id,
       };
       // store in data base payment
-      fetch("http://localhost:1000/payments", {
+      fetch(" https://sb-furniture-server-side.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -98,8 +101,8 @@ const CheckoutForm = ({ booking }) => {
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
+        .then((data) => {
+          console.log(data);
           if (data.modifiedCount) {
             setSuccess("Congrats! your payment succeeded.");
             setTransactionId(paymentIntent.id);
@@ -147,7 +150,8 @@ const CheckoutForm = ({ booking }) => {
         <div>
           <p className="text-primary mt-2">{success}</p>
           <p>
-            Your transactionId:{" "}<span className="font-bold">{transactionId}</span>
+            Your transactionId:{" "}
+            <span className="font-bold">{transactionId}</span>
           </p>
         </div>
       )}

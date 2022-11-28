@@ -8,11 +8,13 @@ const Categories = () => {
   useTitle("Categories");
   const [categories, setCategories] = useState();
   useEffect(() => {
-    axios.get("http://localhost:1000/categories").then((data) => {
-      setCategories(data.data);
-    });
+    axios
+      .get(" https://sb-furniture-server-side.vercel.app/categories")
+      .then((data) => {
+        setCategories(data.data);
+      });
   }, []);
-//   console.log(categories);
+  //   console.log(categories);
 
   return (
     <div className="mt-16 mb-10 ">

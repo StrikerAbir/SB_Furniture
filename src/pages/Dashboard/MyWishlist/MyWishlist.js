@@ -8,7 +8,7 @@ import Loading from "../../../shared/Loading";
 
 const MyWishlist = () => {
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:1000/bookings/${user?.email}`;
+  const url = ` https://sb-furniture-server-side.vercel.app/bookings/${user?.email}`;
   useTitle("My WishList");
   const {
     data: bookings = [],
@@ -32,7 +32,7 @@ const MyWishlist = () => {
   }
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:1000/bookings/${id}`, {
+    fetch(` https://sb-furniture-server-side.vercel.app/bookings/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

@@ -47,14 +47,16 @@ export const router = createBrowserRouter([
         element: <CategoryProducts></CategoryProducts>,
         loader: async ({ params }) =>
           fetch(
-            `http://localhost:1000/categories/products?cat_id=${params.id}`
+            ` https://sb-furniture-server-side.vercel.app/categories/products?cat_id=${params.id}`
           ),
       },
       {
         path: "/product/:id",
         element: <ProductDetails></ProductDetails>,
         loader: async ({ params }) =>
-          fetch(`http://localhost:1000/product/${params.id}`),
+          fetch(
+            ` https://sb-furniture-server-side.vercel.app/product/${params.id}`
+          ),
       },
     ],
   },
@@ -90,7 +92,9 @@ export const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: async ({ params }) =>
-          fetch(`http://localhost:1000/booking/${params.id}`),
+          fetch(
+            ` https://sb-furniture-server-side.vercel.app/booking/${params.id}`
+          ),
       },
       {
         path: "/dashboard/myOrders",
@@ -112,7 +116,9 @@ export const router = createBrowserRouter([
           </SellerRoute>
         ),
         loader: async ({ params }) =>
-          fetch(`http://localhost:1000/product/${params.id}`),
+          fetch(
+            ` https://sb-furniture-server-side.vercel.app/product/${params.id}`
+          ),
       },
       {
         path: "/dashboard/myBuyer",
@@ -150,7 +156,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/allBuyer",
         element: (
           <BossRoute>
-          <AllBuyer></AllBuyer>
+            <AllBuyer></AllBuyer>
           </BossRoute>
         ),
       },

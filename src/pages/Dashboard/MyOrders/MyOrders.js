@@ -8,7 +8,7 @@ import Loading from "../../../shared/Loading";
 const MyOrders = () => {
   useTitle("My Orders");
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:1000/bookings/paid/${user?.email}`;
+  const url = ` https://sb-furniture-server-side.vercel.app/bookings/paid/${user?.email}`;
 
   const {
     data: bookings = [],

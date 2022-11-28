@@ -50,7 +50,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, user_type) => {
     const user = { name, email, user_type };
-    fetch("http://localhost:1000/users", {
+    fetch(" https://sb-furniture-server-side.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

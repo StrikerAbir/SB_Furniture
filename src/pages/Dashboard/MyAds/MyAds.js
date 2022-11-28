@@ -14,7 +14,7 @@ const MyAds = () => {
     setDeleting(null);
   };
 
-  const url = `http://localhost:1000/adsProducts/${user?.email}`;
+  const url = ` https://sb-furniture-server-side.vercel.app/adsProducts/${user?.email}`;
   const {
     data: products,
     isLoading,
@@ -37,12 +37,15 @@ const MyAds = () => {
 
   const handleDeleteProduct = (product) => {
     console.log(product);
-    fetch(`http://localhost:1000/adsDelete/${product._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      ` https://sb-furniture-server-side.vercel.app/adsDelete/${product._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

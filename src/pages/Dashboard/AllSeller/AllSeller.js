@@ -14,7 +14,7 @@ const AllSeller = () => {
     setDeleting(null);
   };
 
-  const url = `http://localhost:1000/users/status?type=Seller`;
+  const url = ` https://sb-furniture-server-side.vercel.app/users/status?type=Seller`;
 
   const {
     data: users,
@@ -35,13 +35,16 @@ const AllSeller = () => {
   });
 
   const handleVerify = (email) => {
-    fetch(`http://localhost:1000/status?email=${email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      ` https://sb-furniture-server-side.vercel.app/status?email=${email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -54,7 +57,7 @@ const AllSeller = () => {
 
   const handleDelete = (user) => {
     console.log(user.email);
-    fetch(`http://localhost:1000/users/${user.email}`, {
+    fetch(` https://sb-furniture-server-side.vercel.app/users/${user.email}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

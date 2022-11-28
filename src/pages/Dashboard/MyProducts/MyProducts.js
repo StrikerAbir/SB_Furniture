@@ -15,7 +15,7 @@ const MyProducts = () => {
     setDeleting(null);
   };
 
-  const url = `http://localhost:1000/sellerProducts/${user?.email}`;
+  const url = ` https://sb-furniture-server-side.vercel.app/sellerProducts/${user?.email}`;
   const {
     data: products,
     isLoading,
@@ -38,12 +38,15 @@ const MyProducts = () => {
 
   const handleDeleteProduct = (product) => {
     //   console.log(product);
-    fetch(`http://localhost:1000/sellerProducts/${product._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      ` https://sb-furniture-server-side.vercel.app/sellerProducts/${product._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -54,7 +57,7 @@ const MyProducts = () => {
 
   const handleAd = (product) => {
     console.log(product);
-    fetch(`http://localhost:1000/advertiseProduct`, {
+    fetch(` https://sb-furniture-server-side.vercel.app/advertiseProduct`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -115,7 +118,9 @@ const MyProducts = () => {
                       {product.status === "Paid" ? (
                         <span className="btn btn-primary btn-sm">Sold</span>
                       ) : (
-                        <span className="btn btn-outline btn-sm">Available</span>
+                        <span className="btn btn-outline btn-sm">
+                          Available
+                        </span>
                       )}
                     </td>
                     <td>

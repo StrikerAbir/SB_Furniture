@@ -7,8 +7,8 @@ import useTitle from "../../../../hooks/useTitle";
 
 const UpdateProduct = () => {
   const productData = useLoaderData();
-    const {
-      _id,
+  const {
+    _id,
     title,
     location,
     resale_price,
@@ -36,7 +36,7 @@ const UpdateProduct = () => {
       seller_phone: data.seller_phone,
       description: data.description,
     };
-    fetch(`http://localhost:1000/product/${_id}`, {
+    fetch(` https://sb-furniture-server-side.vercel.app/product/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

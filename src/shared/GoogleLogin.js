@@ -31,7 +31,7 @@ const GoogleLogin = () => {
   };
   const saveUser = (name, email) => {
     const user = { name, email, user_type: "Buyer" };
-    fetch("http://localhost:1000/users", {
+    fetch(" https://sb-furniture-server-side.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

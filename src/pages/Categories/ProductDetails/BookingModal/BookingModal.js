@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../../authProvider/AuthProvider";
 
-const BookingModal = ({data,product,setProduct}) => {
+const BookingModal = ({ data, product, setProduct }) => {
   const { user } = useContext(AuthContext);
-  const { title, _id, resale_price,seller_email } = data;
-  const date=new Date();
-  
+  const { title, _id, resale_price, seller_email } = data;
+  const date = new Date();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -24,10 +24,10 @@ const BookingModal = ({data,product,setProduct}) => {
       buy_date: date,
       resale_price,
       seller_email,
-      status: 'Pay'
+      status: "Pay",
     };
 
-    fetch("http://localhost:1000/bookings", {
+    fetch(" https://sb-furniture-server-side.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -37,7 +37,7 @@ const BookingModal = ({data,product,setProduct}) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setProduct(null)
+        setProduct(null);
         if (data.acknowledged) {
           toast.success("Booking Successful..");
         } else {
@@ -47,7 +47,7 @@ const BookingModal = ({data,product,setProduct}) => {
       .catch((err) => {
         toast.error("Failed to booking..");
       });
-  }
+  };
   return (
     <>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -72,7 +72,7 @@ const BookingModal = ({data,product,setProduct}) => {
                   disabled
                 />
               </div>
-             
+
               <div className="form-control mb-6">
                 <input
                   name="fName"
