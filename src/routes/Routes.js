@@ -20,9 +20,9 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import DisplayError from "../shared/DisplayError";
+import BossRoute from "./BossRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
-import AdminRoute from "./SellerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -141,17 +141,17 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allSeller",
         element: (
-          <AdminRoute>
+          <BossRoute>
             <AllSeller></AllSeller>
-          </AdminRoute>
+          </BossRoute>
         ),
       },
       {
         path: "/dashboard/allBuyer",
         element: (
-          <AdminRoute>
-            <AllBuyer></AllBuyer>
-          </AdminRoute>
+          <BossRoute>
+          <AllBuyer></AllBuyer>
+          </BossRoute>
         ),
       },
     ],

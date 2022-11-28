@@ -14,7 +14,7 @@ const useRole = (email) => {
       return data;
     }
   });
-  console.log(role);
+  console.log();
   return [role,isLoading]
 }
 

@@ -8,7 +8,7 @@ import useRole from "../hooks/useRole";
 const NavBar = ({ dark, setDark }) => {
   const { user, logOut } = useContext(AuthContext);
 
-  const [role,refetch] = useRole(user?.email);
+  const [role] = useRole(user?.email);
   // console.log(role);
   // refetch();
   const handleLogOut = () => {
