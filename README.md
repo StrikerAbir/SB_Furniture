@@ -8,7 +8,7 @@
 ### `Live Link : `
 *** 
 
- TCourse : [https://sb-furniture.web.app](https://sb-furniture.web.app)
+ SB Furniture : [https://sb-furniture.web.app](https://sb-furniture.web.app)
 
 This is a Full stack Project with both Frontend (REACT) and Backend (NODEJS) work. This project's authentication process relay on firebase, backend work relay on nodejs and mongodb. Stripe used for payment system. Image hosted on imageBB.\
 Have two type authentication system :
