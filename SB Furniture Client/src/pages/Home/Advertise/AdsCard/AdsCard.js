@@ -5,11 +5,14 @@ const AdsCard = ({ ad }) => {
     const { _id, image, title, resale_price, location, product_condition } = ad;
     return (
       <div>
-        <div className="card w-96 bg-base-100 shadow-xl image-full">
+        <div
+          className="card w-96 bg-base-100 shadow-xl image-full"
+          data-aos="zoom-in"
+        >
           <figure>
             <img src={image} alt="" />
           </figure>
-                <div className="card-body">
+          <div className="card-body">
             <p className="text-3xl font-bold text-accent">HOT Deal!!!</p>
             <h2 className="card-title">{title}</h2>
             <div>

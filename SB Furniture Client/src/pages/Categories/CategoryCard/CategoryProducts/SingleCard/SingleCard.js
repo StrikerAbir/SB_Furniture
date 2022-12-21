@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 const SingleCard = ({ product }) => {
   const { image, title, location, resale_price,product_condition,_id } = product;
   return (
-    <div className="card card-compact  bg-base-100 rounded-lg shadow-xl">
+    <div
+      className="card card-compact  bg-base-100 rounded-lg shadow-xl"
+      data-aos="zoom-in"
+    >
       <PhotoProvider>
         <PhotoView src={image}>
           <img
@@ -20,15 +23,15 @@ const SingleCard = ({ product }) => {
         <div className="flex items-center justify-between">
           <h2 className="card-title">{title}</h2>
           <div>
-            <p className='font-semibold'>Resale Price: ${resale_price}</p>
+            <p className="font-semibold">Resale Price: ${resale_price}</p>
           </div>
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <p className='font-semibold'>Location: {location}</p>
+            <p className="font-semibold">Location: {location}</p>
           </div>
           <div>
-            <p className='font-semibold'>Condition: {product_condition}</p>
+            <p className="font-semibold">Condition: {product_condition}</p>
           </div>
         </div>
         <div className="card-actions">
