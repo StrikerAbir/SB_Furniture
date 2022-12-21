@@ -29,18 +29,20 @@ const NavBar = ({ dark, setDark }) => {
   const menuItems2 = (
     <React.Fragment>
       <li tabIndex={0} className="z-10 font-semibold">
-        <div className="justify-between">
-          DashBoard
-          <svg
-            className="fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-          </svg>
-        </div>
+        {user?.uid && (
+          <div className="justify-between">
+            DashBoard
+            <svg
+              className="fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+            </svg>
+          </div>
+        )}
         <ul className="p-2 bg-base-100">
           {role?.type === "Buyer" && (
             <>
@@ -55,7 +57,7 @@ const NavBar = ({ dark, setDark }) => {
             <>
               <li>
                 <Link to="/dashboard/myProducts">My Products</Link>
-                <Link to='/dashboard/addProducts'>Add a Product</Link>
+                <Link to="/dashboard/addProducts">Add a Product</Link>
                 <Link to="/dashboard/myBuyer">My Buyers</Link>
                 <Link to="/dashboard/myAds">My Ads</Link>
               </li>
@@ -65,8 +67,8 @@ const NavBar = ({ dark, setDark }) => {
           {role?.type === "Admin" && (
             <>
               <li>
-                <Link to='/dashboard/allSeller'>All Sellers</Link>
-                <Link to='/dashboard/allBuyer'>All Buyers</Link>
+                <Link to="/dashboard/allSeller">All Sellers</Link>
+                <Link to="/dashboard/allBuyer">All Buyers</Link>
               </li>
             </>
           )}
