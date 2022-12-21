@@ -6,6 +6,7 @@ import { AuthContext } from "../../../authProvider/AuthProvider";
 import BookingModal from "./BookingModal/BookingModal";
 import { FaCheckCircle } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
@@ -46,6 +47,10 @@ const ProductDetails = () => {
       return data;
     },
   });
+
+  const loginPlease = () => {
+    toast.success("Please Login for Booking..")
+  }
 
   useTitle(title);
   return (
@@ -125,14 +130,18 @@ const ProductDetails = () => {
                       {seller_email}
                     </p>
                     <div className="my-4">
-                      <label
-                        disabled={!user ? true : false}
-                        htmlFor="booking-modal"
-                        className=" btn btn-primary"
-                        onClick={() => setProduct(data)}
-                      >
-                        {user ? "BOOK NOW" : "PLEASE LOGIN FIRST"}
-                      </label>
+                      {!user ? (
+                        <button className="btn btn-primary" onClick={loginPlease}>Book Now</button>
+                      ) : (
+                        <label
+                          htmlFor="booking-modal"
+                          className=" btn btn-primary"
+                          onClick={() => setProduct(data)}
+                        >
+                          BOOK NOW
+                        </label>
+                      )}
+
                       {product && (
                         <BookingModal
                           data={data}
