@@ -15,7 +15,7 @@ const MyWishlist = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["bookings", user?.email],
+    queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {

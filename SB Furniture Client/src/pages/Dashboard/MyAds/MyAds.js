@@ -20,7 +20,7 @@ const MyAds = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", user?.email],
     queryFn: async () => {
       try {
         const res = await fetch(url, {

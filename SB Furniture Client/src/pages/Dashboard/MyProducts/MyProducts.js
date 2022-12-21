@@ -21,7 +21,7 @@ const MyProducts = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: [ user?.email],
     queryFn: async () => {
       try {
         const res = await fetch(url, {
